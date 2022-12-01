@@ -1,0 +1,36 @@
+<?php
+echo "
+<!DOCTYPE html>
+<head>
+    <link rel='stylesheet' href='../../css/affNoteGrand.css' />
+    <link rel='stylesheet' href='../../css/style.css' />
+    <script src='../../js/tinymce/tinymce.min.js' referrerpolicy='origin'></script>
+    <script src='../../js/index.js'></script>
+</head>
+<script>
+    tinymce.init({
+        selector: '#mytextarea',
+        content_css: '../../css/style.css',
+        skin: 'oxide-dark',
+        content_css: 'dark',
+        menubar: false,
+        toolbar: ' styles | bold italic | ',
+    });
+  </script>
+<body>
+    <form action="">
+    <div class='note'>
+        <div class='titreNote'><textarea>$u->titreNote</textarea></div>
+        <div class='intro'>
+        <!--<div class='themeNote'>$u->themeNote</div>-->
+        <div class='dateModifNote'>$u->dateModifNote</div>
+        <a><div id='savebtn' class='btnSave'>Sauvegarder</div></a>
+        </div>
+        <textarea class='test' id='mytextarea'>$u->contenueNote</textarea>
+    </div>
+</body>
+</html>
+";
+?>
+
+
