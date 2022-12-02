@@ -3,7 +3,6 @@ echo "
 <!DOCTYPE html>
 <head>
     <link rel='stylesheet' href='../../css/affNoteGrand.css' />
-    <link rel='stylesheet' href='../../css/style.css' />
     <script src='../../js/tinymce/tinymce.min.js' referrerpolicy='origin'></script>
     <script src='../../js/index.js'></script>
 </head>
@@ -18,16 +17,17 @@ echo "
     });
   </script>
 <body>
-    <form action="" >
+    <form action='../../controleur/saveNote.php' method='POST'>
+        <input type='hidden' name='idNote' value='$u->numNote'>
     <div class='note'>
-        <div class='titreNote'><textarea>$u->titreNote</textarea></div>
+        <div class='titreNote'><textarea placeholder='Inserer un titre...'name='titreNote'>$u->titreNote</textarea></div>
         <div class='intro'>
-        <!--<div class='themeNote'>$u->themeNote</div>-->
         <div class='dateModifNote'>$u->dateModifNote</div>
-        <a><div id='savebtn' class='btnSave'>Sauvegarder</div></a>
+        <div id='savebtn'><button class='btnSave' type='submit'>Sauvegarder</button></div>
         </div>
-        <textarea class='test' id='mytextarea'>$u->contenueNote</textarea>
+        <textarea placeholder='inserer du texte...' name='contenueNote' class='test' id='mytextarea'>$u->contenueNote</textarea>
     </div>
+    </form>
 </body>
 </html>
 ";

@@ -1,26 +1,16 @@
 <?php
-$utilisateurid = $_GET['id'];
+session_start();
+$utilisateurid = 1201;
+$_SESSION['utilisateurid'] = $utilisateurid;
+
 require_once("../../model/note.php");
 require_once("../../model/utilisateur.php");
 require_once("../../config/connexion.php");
 Connexion::connect();
+include ("../../vue/debut.html");
+include("../../vue/navbar/navbar.php");
+Utilisateur::afficherUtilisateur($utilisateurid);
+include ("../../vue/note/newNote.html");
+Note::afficherNoteBulle($utilisateurid);
+include ("../../vue/fin.html");
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='../../css/style.css' />
-    <title>vue</title>
-</head>
-<body>
-    <?php
-        include("../../vue/navbar/navbar.html");
-        Utilisateur::afficherUtilisateur($utilisateurid);
-        include ("../../vue/note/newNote.html");
-        
-        Note::afficherNoteBulle($utilisateurid);
-    ?>
-</body>
-</html>

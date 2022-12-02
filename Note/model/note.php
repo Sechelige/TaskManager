@@ -2,10 +2,7 @@
 class Note {
     private $numNote;
     private $titreNote;
-    private $themeNote;
-    private $prioNote;
     private $contenueNote;
-    private $dateCreaNote;
     private $dateModifNote;
 
     //getters
@@ -31,10 +28,7 @@ class Note {
         if (!is_null($idNote) && !is_null($title) && !is_null($theme) && !is_null($prio) && !is_null($content) && !is_null($dateCrea) && !is_null($dateModif)) {
             $this->idNote = $idNote;
             $this->title = $title;
-            $this->theme = $theme;
-            $this->prio = $prio;
             $this->content = $content;
-            $this->dateCrea = $dateCrea;
             $this->dateModif = $dateModif;
         }
     }
@@ -54,6 +48,13 @@ class Note {
         return $tab_note;
     }
 
+    public static function getNoteByUserAndId($id, $idNote) {
+        $rep = connexion::pdo()->query("SELECT * FROM note WHERE numUtilisateur = $id AND numNote = $idNote");
+        $rep->setFetchMode(PDO::FETCH_CLASS, 'Note');
+        $tab_note = $rep->fetchAll();
+        return $tab_note;
+    }
+
     public static function getNoteById($id) {
         $rep = connexion::pdo()->query("SELECT * FROM note WHERE numNote = $id");
         $rep->setFetchMode(PDO::FETCH_CLASS, 'Note');
@@ -68,11 +69,38 @@ class Note {
         }
     }
 
-    public static function afficherNote($idNote){
-        $tab_note = Note::getNoteById($idNote);
+    public static function afficherNote($idNote, $id) {
+        $tab_note = Note::getNoteByUserAndId($idNote, $id);
         foreach ($tab_note as $u) {
             include ("../../vue/note/affNoteGrand.html");
         }
+    }
+
+    public static function createNote ($idUtilisateur){
+        $titreNote = "";
+        $contenueNote = "";
+        $dateModifNote = date("Y-m-d");
+        $sql = "INSERT INTO note ( titreNote, contenueNote, dateModifNote, numUtilisateur) VALUES ('$titreNote', '$contenueNote', '$dateModifNote', '$idUtilisateur');";
+        connexion::pdo()->exec($sql);
+        $rep = connexion::pdo()->lastInsertId();
+        header("Location: ../vue/global/vueNote.php?idNote=$rep");
+    }
+
+    public static function sauvegarderNote ($numUtilisateur,$numNote, $titreNote, $contenueNote, $dateModifNote){
+        $sql = "INSERT INTO note (titreNote, contenueNote, dateModifNote) VALUES ('$titreNote', '$contenueNote', '$dateModifNote');";
+        $sql2 = "UPDATE note SET titreNote = '$titreNote', contenueNote = '$contenueNote', dateModifNote = '$dateModifNote' WHERE numNote = '$numNote';";
+        if ($numNote == 0) {
+             connexion::pdo()->exec($sql);
+        } else {
+        connexion::pdo()->exec($sql2);
+        }
+        header("Location: ../vue/global/vue.php");
+    }
+
+    public static function deleteNote($numUtilisateur, $numNote){
+        $sql = "DELETE FROM note WHERE numNote = '$numNote' and numUtilisateur = '$numUtilisateur';";
+        connexion::pdo()->exec($sql);
+        header("Location: ../vue/global/vue.php");
     }
 }
 ?>

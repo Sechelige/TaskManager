@@ -1,1 +1,1 @@
-info about this project
+infos about this project

@@ -4,15 +4,10 @@ echo "
 <body>
     <div class='note'>
         <a href='../../vue/global/vueNote.php?idNote=$u->numNote'>
-        <button class='btnNote'>
-            <div class='titleNote'>$u->titreNote
-            <!--<div class='theme'>$u->themeNote</div>-->
-            </div>
-
-            <div class='dateModif'>$u->dateModifNote</div>
-        
-        </button>
-    </a>
+        <div class='btnNote'>
+            <div class='titleNote'>$u->titreNote <div class='dateModif'>$u->dateModifNote</div></div>
+            <div class='deletNote'><a href='../../controleur/deleteNote.php?idNote=$u->numNote'><i class='fa-solid fa-trash-can'></a></i></div>
+        </div>
     </div>
     ";
 ?>
