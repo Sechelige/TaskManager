@@ -1,7 +1,7 @@
 
 # ProjectTaskManager 📝
 
-Ce projet fait office de gestionnaire de tâches et de preneur de notes. 📍
+Ce projet fait office de gestionnaire de tâches et de preneur de notes.
 Il sera également possible de créer des groupes de projet avec lesquels les notes et les tâches seront partagées au moyen d'un tableau de bord.
 
 Je fais ce projet pour améliorer mes compétences en Php, et particulièrement pour suivre le modèle MVC.
@@ -10,7 +10,7 @@ Pour l'instant, le projet n'est pas hébergé, mais à l'avenir, je vais install
 
 Si vous constatez des erreurs dans le code, je serais très heureux d'avoir vos commentaires pour l'améliorer. 
 
-## Actuellement 
+## Actuellement 🏗️
 
 Model : Note | Utilisateur | Tache
 
@@ -20,7 +20,7 @@ Controleur : newNote | saveNote | deleteNote
 
 js : Librairie : tinymce 
 
-## Documentation
+## Documentation 📚
 
 [Documentation](https://linktodocumentation)
 
