@@ -7,7 +7,9 @@ Il sera également possible de créer des groupes de projet avec lesquels les no
 ## Actuellement 
 
 Model : Note | Utilisateur 
+
 Vue : global | vueNote
+
 Controleur : newNote | saveNote | deleteNote
 
 js : Librairie : tinymce 
