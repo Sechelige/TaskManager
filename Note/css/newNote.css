@@ -6,6 +6,7 @@
 }
 
 .newnote {
+    font-style: bold;
     margin-left: 13px;
     appearance: button;
     backface-visibility: hidden;
