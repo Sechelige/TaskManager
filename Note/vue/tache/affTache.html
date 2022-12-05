@@ -1,16 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$affTache = $u->numTache;
+echo "
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='../../css/affTache.css' type='text/css'>
     <title>Document</title>
 </head>
+<style>
+    .$affTache{{ 
+        background-color: $u->couleurTache;
+    }
+</style>
+
 <body>
-    <div class='tache'>
-        <input type='checkbox' name='tache' id='etatTache' value='$u->etatTache'>
-        <div class='intituléTache'> $u->intituléTache </div>
-        <div class='dateRappel'> $u->dateRappel </div>
+    <form action='../../controleur/saveTache.php?numTache=$u->numTache' method='POST'>
+    <div class='tache' class='$affTache'>
+        <input type='hidden' name='etatTache' value='$u->etatTache'>
+        <input type='checkbox' name='etatTache' value='$u->etatTache'><span class='checkbox'></span>
+        <div class='intituléTache'> 
+            <textarea name='intituléTache'>$u->intituléTache</textarea>
+        </div>
+        <div class='couleur'>
+            <select name='couleurTache'>
+                <option value='blue'>Couleur</option>
+                <option value='red'>Rouge</option>
+                <option value='green'>Vert</option>
+                <option value='blue'>Bleu</option>
+                <option value='orange'>Orange</option>
+                <option value='purple'>Violet</option>
+            <select/>
+        </div>
+        <div class='saveTache'> <button class='btnSave' type='submit'><i class='fa-solid fa-floppy-disk'></i></button></div>
     </div>
+</form>
 </body>
 </html>
+";
+?>

@@ -3,7 +3,6 @@ class Tache {
     private $numTache;
     private $intituléTache;
     private $couleurTache;
-    private $dateRappel;
     private $dateModifTache;
     private $etatTache;
 
@@ -13,7 +12,6 @@ class Tache {
             $this->numTache = $numTache;
             $this->intituléTache = $intituléTache;
             $this->couleurTache = $couleurTache;
-            $this->dateRappel = $dateRappel;
             $this->dateModifTache = $dateModifTache;
             $this->etatTache = $etatTache;
         }
@@ -30,9 +28,25 @@ class Tache {
 
     public static function afficher ($userId) {
         $tab_tache = Tache::getTacheByUser($userId);
-        foreach ($tab_tache as $tache) {
-
+        foreach ($tab_tache as $u) {
+            include ("../../vue/tache/affTache.html");
         }
+    }
+
+    public static function newTache($userId) {
+        $intituléTache = "";
+        $couleurTache = "";
+        $dateModifTache = date("Y-m-d");
+        $etatTache = 0;
+        $sql = "INSERT INTO tache (intituléTache, couleurTache, dateModifTache, etatTache, numUtilisateur) VALUES ('$intituléTache', '$couleurTache', '$dateModifTache', '$etatTache','$userId');";
+        connexion::pdo()->exec($sql);
+        $rep = connexion::pdo()->lastInsertId();
+        return $rep;
+    }
+
+    public static function editTache($numTache, $intituléTache, $couleurTache, $dateModifTache, $etatTache) {
+        $sql = "UPDATE tache SET intituléTache = '$intituléTache', couleurTache = '$couleurTache', dateModifTache = '$dateModifTache', etatTache = '$etatTache' WHERE numTache = '$numTache';";
+        connexion::pdo()->exec($sql);
     }
 }
 ?>
